@@ -45,7 +45,7 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
           </Heading>
           {value.type === "quote" && (
             <chakra.p mt={2} color={"gray.600"} as="blockquote">
-              {value.quote}
+              “{value.quote}”
             </chakra.p>
           )}
         </Box>
