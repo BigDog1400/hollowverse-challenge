@@ -1,28 +1,48 @@
-import Image from 'next/image';
-import React from 'react';
+import { Box, Flex, HStack, Link, Text } from "@chakra-ui/react";
+import Image from "next/image";
+import React from "react";
 
 export const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#F9EBEA' }}>
-      <Image
-        width={50}
-        height={50}
-        alt="Hollowverse"
-        src="/images/letter-logo.png"
-      />
+    <Flex
+      as="footer"
+      w="full"
+      background={"white"}
+      boxShadow="sm"
+      p={5}
+      borderTop="1px solid #e5e7eb"
+    >
+      <Flex
+        maxW={"container.lg"}
+        flexWrap={"wrap"}
+        alignItems="center"
+        w="full"
+        margin="0 auto"
+        gap={2}
+        justifyContent={"space-between"}
+      >
+        <HStack spacing={5}>
+          <Image
+            width={50}
+            height={50}
+            alt="Hollowverse"
+            src="/images/letter-logo.png"
+          />
 
-      <p>
-        Hollowverse is about the important <br />
-        people and their beliefs.
-      </p>
+          <Text>
+            Hollowverse is about the important <br />
+            people and their beliefs.
+          </Text>
+        </HStack>
 
-      <p>
-        Email us at{' '}
-        <a href="mailto:hollowverse@hollowverse.com">
-          hollowverse@hollowverse.com
-        </a>
-        .
-      </p>
-    </footer>
+        <Text>
+          Email us at{" "}
+          <Link href="mailto:hollowverse@hollowverse.com">
+            hollowverse@hollowverse.com
+          </Link>
+          .
+        </Text>
+      </Flex>
+    </Flex>
   );
 };
