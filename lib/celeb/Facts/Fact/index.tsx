@@ -2,6 +2,7 @@ import React from "react";
 import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
 import { Fact as TFact } from "~/lib/components/types";
 import { Box, Flex, chakra, Tag, Heading, Image, Link } from "@chakra-ui/react";
+import { LinkIcon } from "@chakra-ui/icons";
 
 function transformFirstLetterToUpperCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -66,13 +67,14 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
         </Flex>
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
-          <Flex gap={2}>
+          <Flex gap={3}>
             <Link
               color={"brand.600"}
               _hover={{ textDecor: "underline" }}
               href={value.source}
               target="_blank"
             >
+              <LinkIcon mr={1} />
               Source
             </Link>
             <Link
@@ -81,6 +83,7 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
               href={value.forumLink}
               target="_blank"
             >
+              <LinkIcon mr={1} />
               Forum link
             </Link>
           </Flex>
