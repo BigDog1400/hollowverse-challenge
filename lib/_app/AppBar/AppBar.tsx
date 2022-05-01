@@ -1,12 +1,25 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import {
+  Box,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { SearchIcon } from "@chakra-ui/icons";
 
 export const AppBar = () => {
   return (
-    <nav style={{ backgroundColor: '#F9EBEA' }}>
-      <section>
-        <div>
+    <Box background={"white"} boxShadow="sm" py={3}>
+      <Flex
+        as="section"
+        pos={"relative"}
+        justifyContent="space-around"
+        flexWrap={"wrap"}
+      >
+        <Box px={5}>
           <Link passHref href="/">
             <a>
               <Image
@@ -18,15 +31,20 @@ export const AppBar = () => {
               />
             </a>
           </Link>
-        </div>
+        </Box>
 
-        <div>
+        <Box justifySelf={"center"} px={5}>
           {/* Search input */}
-          <div>
-            <input placeholder="Search for a celebrity" type="search" />
-          </div>
-        </div>
-      </section>
-    </nav>
+          <InputGroup variant={"outline"}>
+            <InputLeftElement
+              pointerEvents="none"
+              // eslint-disable-next-line react/no-children-prop
+              children={<SearchIcon color="gray.600" />}
+            />
+            <Input type="search" placeholder="Search for a celebrity" />
+          </InputGroup>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
