@@ -1,53 +1,91 @@
-import Link from 'next/link';
-import React from 'react';
-import { useCelebContext } from '~/lib/components/StaticPropsContextProvider';
-import { Fact as TFact } from '~/lib/components/types';
+import React from "react";
+import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
+import { Fact as TFact } from "~/lib/components/types";
+import { Box, Flex, chakra, Tag, Heading, Image, Link } from "@chakra-ui/react";
+
+function transformFirstLetterToUpperCase(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
   const {
     celeb: { name },
   } = useCelebContext();
-
   return (
-    <div>
-      <div>
-        <p>{value.date}</p>
-      </div>
+    <Flex p={8} w="full" alignItems="center" justifyContent="center">
+      <Box
+        mx="auto"
+        px={8}
+        py={4}
+        rounded="lg"
+        shadow="lg"
+        bg={"white"}
+        maxW="2xl"
+      >
+        <Flex justifyContent="space-between" alignItems="center">
+          <chakra.span fontSize="sm" color={"gray.600"}>
+            {value.date}
+          </chakra.span>
+          <Tag
+            px={3}
+            py={1}
+            fontWeight="700"
+            rounded="full"
+            variant={"outline"}
+          >
+            {transformFirstLetterToUpperCase(value.type)}
+          </Tag>
+        </Flex>
 
-      <div>
-        {(value.type === 'quote' && (
-          <div>
-            <p>
-              {value.context}, {name} said
-            </p>
+        <Box mt={2}>
+          <Heading fontSize="2xl" color={"gray.700"} fontWeight="700">
+            {(value.type === "quote" && `${value.context}, ${name} said`) ||
+              (value.type === "fact" && `${value.content}`)}
+          </Heading>
+          {value.type === "quote" && (
+            <chakra.p mt={2} color={"gray.600"} as="blockquote">
+              {value.quote}
+            </chakra.p>
+          )}
+        </Box>
 
-            <blockquote>
-              <p>{value.quote}</p>
-            </blockquote>
-          </div>
-        )) ||
-          (value.type == 'fact' && (
-            <div>
-              <p>{value.content}</p>
-            </div>
-          ))}
-      </div>
+        <Flex mt={4} gap={2} flexWrap="wrap">
+          {value.tags.map((t) => {
+            return (
+              <Tag
+                key={t.tag.name}
+                p={2}
+                minW="fit-content"
+                borderRadius={"full"}
+              >
+                # {t.isLowConfidence && "Possibly "}
+                {t.tag.name}
+              </Tag>
+            );
+          })}
+        </Flex>
 
-      <div>
-        {value.tags.map((t) => {
-          return (
-            <p key={t.tag.name}>
-              # {t.isLowConfidence && 'Possibly '}
-              {t.tag.name}
-            </p>
-          );
-        })}
-      </div>
-
-      <div>
-        <Link href={value.source}>Source</Link>
-        <Link href={value.forumLink}>Forum link</Link>
-      </div>
-    </div>
+        <Flex justifyContent="space-between" alignItems="center" mt={4}>
+          <Flex gap={2}>
+            <Link
+              color={"brand.600"}
+              _hover={{ textDecor: "underline" }}
+              href={value.source}
+              target="_blank"
+            >
+              Source
+            </Link>
+            <Link
+              color={"brand.600"}
+              _hover={{ textDecor: "underline" }}
+              href={value.forumLink}
+              target="_blank"
+            >
+              Forum link
+            </Link>
+          </Flex>
+        </Flex>
+      </Box>
+    </Flex>
   );
 };

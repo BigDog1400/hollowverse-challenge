@@ -1,4 +1,4 @@
-import { Box, Center, Flex, HStack, Tag, Text, VStack } from "@chakra-ui/react";
+import { Center, Tag, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
 
@@ -6,12 +6,7 @@ export const TagCollection = () => {
   const tags = useCelebContext().celeb.tags!;
 
   return (
-    <VStack
-      background={"gray.50"}
-      borderTop="1px solid #e5e7eb"
-      py={10}
-      gap={5}
-    >
+    <VStack borderTop="1px solid #e5e7eb" py={10} gap={5}>
       <Center maxW={"container.lg"} flexWrap="wrap" gap={4}>
         {tags.regular.map((t) => (
           <Tag
