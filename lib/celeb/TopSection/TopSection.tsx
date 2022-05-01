@@ -39,8 +39,8 @@ export const TopSection = () => {
             Religion, politics, and ideas of{" "}
             <chakra.span
               display={"inline-flex"}
-              // color={"whatsapp.300"}
               position={"relative"}
+              isolation="isolate"
             >
               <chakra.p
                 backgroundClip="text"
