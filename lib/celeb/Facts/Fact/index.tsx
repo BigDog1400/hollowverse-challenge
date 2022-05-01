@@ -13,10 +13,10 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
     celeb: { name },
   } = useCelebContext();
   return (
-    <Flex p={8} w="full" alignItems="center" justifyContent="center">
+    <Flex py={8} px={6} w="full" alignItems="center" justifyContent="center">
       <Box
         mx="auto"
-        px={8}
+        px={4}
         py={4}
         rounded="lg"
         shadow="lg"
